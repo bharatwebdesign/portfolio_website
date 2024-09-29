@@ -105,8 +105,6 @@ a.navbar-brand:hover {
   background-color: #08080805;
   padding-top: 100px;
   padding-bottom: 80px;
-  /* border-radius: 100px;
-  border-radius: 50%; */
 }
 .hero-banner > .container {
   border-left: 500px solid #f9b248;
@@ -119,13 +117,6 @@ a.navbar-brand:hover {
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
   padding: 50px;
 }
-/* .hero-banner > .container {
-  border-left: 52px solid green;
-  border-right: 52px solid green;
-  border-top: 30px solid royalblue;
-  border-bottom: 30px solid royalblue;
-} */
-
 .hero-banner h1 {
   font-size: 3em;
   font-weight: 700;
@@ -158,28 +149,11 @@ p.bottom-line {
   margin: 0;
   padding: 0;
 }
-/* .education {
-  background-color: #5591377a !important;
-} */
-/* .about-me .about-text {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  margin: 0;
-  padding: 0;
-  padding-top: 30px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 28px;
-  text-shadow: 0 0 black;
-} */
 
 /* Responsive Section Stat  */
 .responsive-section a {
   color: #fff;
 }
-/* .responsive-section a:hover {
-  color: #f9b248;
-} */
 button {
   display: inline-block;
   background-color: transparent;
@@ -210,7 +184,6 @@ button span:after {
   transition: 0.5s;
 }
 button:hover {
-  /* background-color: #f7c2f9; */
   background-color: green;
 }
 button:hover span {
