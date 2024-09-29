@@ -195,6 +195,32 @@ button:hover span:after {
 }
 /* Responsive Section End  */
 
+/* Footer Code Start  */
+
+@media (min-width: 1200px) {
+  .map {
+    padding: 30px;
+    border-top: 3px solid orange;
+    /* border-left: 3px solid green; */
+    border-right: 3px solid green;
+    border-bottom: 3px solid orange;
+  }
+  .divmap2 {
+    padding: 30px;
+    border-top: 3px solid orange;
+    border-left: 3px solid green;
+    /* border-right: 3px solid green; */
+    border-bottom: 3px solid orange;
+  }
+  .embed-responsive.embed-responsive-16by9 {
+    padding: 30px;
+    border-top: 3px solid orange;
+    border-left: 3px solid green;
+    border-right: 3px solid green;
+    border-bottom: 3px solid orange;
+  }
+}
+/* Footer Code End  */
 @media (max-width: 1200px) {
   .hero-banner > .container {
     border-left: 200px solid #f9b248;
