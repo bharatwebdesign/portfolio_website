@@ -254,7 +254,9 @@ button:hover span:after {
     font-size: 18px;
     padding: 0;
   }
-
+   .about-me > .container {
+    padding: 20px;
+  }
   .hero-banner > .container {
     border-left: 40px solid #f9b248;
   }
@@ -276,6 +278,9 @@ button:hover span:after {
   }
   .logo {
     border-radius: 0;
+  }
+   .about-me > .container {
+    padding: 20px;
   }
   .hero-banner {
     padding-top: 54px;
