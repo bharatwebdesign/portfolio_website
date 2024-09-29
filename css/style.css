@@ -196,7 +196,12 @@ button:hover span:after {
 /* Responsive Section End  */
 
 /* Footer Code Start  */
-
+#cont a {
+  color: #fff;
+}
+#cont a:hover {
+  color: #f9b248;
+}
 @media (min-width: 1200px) {
   .map {
     padding: 30px;
