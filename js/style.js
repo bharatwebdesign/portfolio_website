@@ -11,128 +11,173 @@ function myFunction() {
   var scrolled = (winScroll / height) * 100;
   document.getElementById("myBar").style.width = scrolled + "%";
 }
-// Banner Animation Css Start 
-// Function to check for device orientation support and request permission if needed
-function initDeviceOrientation() {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        const button = document.getElementById('permission-button');
-        button.style.display = 'block';
 
-        button.addEventListener('click', () => {
-            DeviceOrientationEvent.requestPermission()
-                .then(permissionState => {
-                    if (permissionState === 'granted') {
-                        window.addEventListener('deviceorientation', handleOrientation);
-                        window.addEventListener('devicemotion', handleMotion);
-                        button.style.display = 'none';
-                    }
-                })
-                .catch(console.error);
-        });
-    } else {
-        window.addEventListener('deviceorientation', handleOrientation);
-        window.addEventListener('devicemotion', handleMotion);
-    }
-}
-
-let beta = 0;
-let gamma = 0;
-let isShaking = false;
-
-function handleOrientation(event) {
-    beta = event.beta;
-    gamma = event.gamma;
-}
-
-function handleMotion(event) {
-    const acceleration = event.accelerationIncludingGravity;
-    const shakeThreshold = 15;
-    const accelerationX = acceleration.x;
-    const accelerationY = acceleration.y;
-    const accelerationZ = acceleration.z;
+// Banner Animation Css Start
+(function() {
+    'use strict';
     
-    if (accelerationX > shakeThreshold || accelerationY > shakeThreshold || accelerationZ > shakeThreshold) {
-        if (!isShaking) {
-            isShaking = true;
-            triggerQuantumGlitch();
-            setTimeout(() => {
-                isShaking = false;
-            }, 1000); // Glitch duration
+    var camera, scene, renderer,
+        container, stats, particle,
+        winHalfX, winHalfY,
+        height, width, fieldOfView,
+        aspectRatio, nearPlane, farPlane,
+        body, cameraZ, material,
+        i = 0,
+        count = 0,
+        Tau = Math.PI * 2,
+        mouseX = 0,
+        mouseY = 0,
+        amtX = 50,
+        amtY = 50,
+        sep = 100,
+        spriteOpts = {},
+        particles = [],
+        cssString = 'margin: 0; overflow: hidden;';
+
+    function onDocumentReady() {
+        body = document.body;
+        body.style.cssText = cssString;
+
+        container = document.createElement('div');
+        body.appendChild(container);
+
+        height = window.innerHeight;
+        winHalfY = height / 2;
+        width = window.innerWidth;
+        winHalfX = width / 2;
+        fieldOfView = 75;
+        aspectRatio = width / height;
+        nearPlane = 1;
+        farPlane = 10000;
+        cameraZ = 750;
+
+        rendererer(onRendererRenderered);
+    }
+
+    // renders the renderer 😎
+    function rendererer(complete) {
+        //lights (no lights!) camera, action!
+        camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
+        camera.position.z = cameraZ;
+
+        // aaaaaaaaand scene! (No wait, we're not done!)
+        // aaaaaaaaand ten more minutes.
+        scene = new THREE.Scene();
+
+        //material settings
+        spriteOpts = {
+            color: 0xffffff,
+            program: function(ctx) {
+                ctx.beginPath();
+                ctx.arc(0, 0, 0.5, 0, Tau, true);
+                ctx.fill();
+            }
+        };
+
+        material = new THREE.SpriteCanvasMaterial(spriteOpts);
+
+        // Stop! particle time!
+        for (var ix = 0, lx = amtX; ix < lx; ix++) {
+
+            for (var iy = 0, ly = amtY; iy < ly; iy++) {
+                particle = particles[i++] = new THREE.Sprite(material);
+                particle.position.x = ix * sep - ((amtX * sep) / 2);
+                particle.position.z = iy * sep - ((amtY * sep) / 2);
+                scene.add(particle);
+            }
+        }
+
+        //render the scene
+        renderer = new THREE.CanvasRenderer();
+        renderer.setClearColor(0xf6780a, 1);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+
+        // append the rendered scene to the container
+        container.appendChild(renderer.domElement);
+        
+        // aaaaaaaaand Scene? (yes, scene!)
+        if (complete) {
+            complete();
         }
     }
-}
 
-// Three.js setup
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('quantum-canvas'), antialias: true });
+    function onRendererRenderered() {
+        // stats stats stats stats stats stats stats, eeeeerrryyybooodddaay! - Lil Jon, probably.
+        stats = new Stats();
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.top = stats.domElement.style.right = '0';
+        container.appendChild(stats.domElement);
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.z = 5;
+        // bind events
+        document.addEventListener('mousemove', onDocumentMouseMove);
+        document.addEventListener('touchstart', onDocumentTouchStart);
+        document.addEventListener('touchmove', onDocumentTouchMove);
+        window.addEventListener('resize', onWindowResize);
 
-const ambientLight = new THREE.AmbientLight(0x404040);
-scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xff5722, 1, 100);
-scene.add(pointLight);
+    }
 
-// Main object
-const geometry = new THREE.OctahedronGeometry(1.5, 0);
-const material = new THREE.MeshPhongMaterial({ color: 0xff5722, emissive: 0xff5722, emissiveIntensity: 0.5 });
-const mainObject = new THREE.Mesh(geometry, material);
-scene.add(mainObject);
+    function onDocumentMouseMove(e) {
+        mouseX = e.clientX - winHalfX;
+        mouseY = e.clientY - winHalfY;
+    }
 
-// Particles
-const particleGeometry = new THREE.BufferGeometry();
-const particleCount = 5000;
-const posArray = new Float32Array(particleCount * 3);
-for (let i = 0; i < particleCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 20;
-}
-particleGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-const particleMaterial = new THREE.PointsMaterial({ color: 0xff5722, size: 0.05 });
-const particles = new THREE.Points(particleGeometry, particleMaterial);
-scene.add(particles);
+    function onDocumentTouchStart(e) {
+        if (e.touches.length === 1) {
+            e.preventDefault();
+            mouseX = e.touches[0].pageX - winHalfX;
+            mouseY = e.touches[0].pageY - winHalfY;
+        }
+    }
 
-// Glitch effect function
-function triggerQuantumGlitch() {
-    gsap.to(mainObject.scale, { x: 1.2, y: 1.2, z: 1.2, duration: 0.1, yoyo: true, repeat: 1 });
-    gsap.to(particles.material, { size: 0.1, duration: 0.1, yoyo: true, repeat: 1 });
-    gsap.to(mainObject.material.color, { r: 1, g: 0.5, b: 0, duration: 0.1, yoyo: true, repeat: 1 });
-    
-    // Animate camera and particles for the "scatter" effect
-    gsap.to(particles.rotation, { x: Math.random() * 2, y: Math.random() * 2, z: Math.random() * 2, duration: 0.5 });
-    gsap.to(mainObject.position, { x: Math.random() * 0.2 - 0.1, y: Math.random() * 0.2 - 0.1, z: Math.random() * 0.2 - 0.1, duration: 0.1, yoyo: true, repeat: 1 });
-}
+    function onDocumentTouchMove(e) {
+        if (e.touches.length === 1) {
+            e.preventDefault();
+            mouseX = e.touches[0].pageX - winHalfX;
+            mouseY = e.touches[0].pageY - winHalfY;
+        }
+    }
 
-// Animation loop
-function animate() {
-    requestAnimationFrame(animate);
+    function onWindowResize() {
+        // update variables to new values
+        height = window.innerHeight;
+        winHalfY = height / 2;
+        width = window.innerWidth;
+        winHalfX = width / 2;
 
-    // Apply device orientation to camera
-    const rotationX = (beta - 90) / 90 * (Math.PI / 2);
-    const rotationY = gamma / 90 * (Math.PI / 2);
-    camera.position.x = Math.sin(rotationY) * 5;
-    camera.position.y = Math.sin(rotationX) * 5;
-    camera.lookAt(scene.position);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+    }
 
-    mainObject.rotation.x += 0.005;
-    mainObject.rotation.y += 0.005;
-    particles.rotation.y += 0.001;
+    function animate() {
+        requestAnimationFrame(animate);
 
-    renderer.render(scene, camera);
-}
+        update();
+        stats.update();
+    }
 
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-});
+    function update() {
+        camera.position.x += (mouseX - camera.position.x) * 0.05;
+        camera.position.y += (mouseY - camera.position.y) * 0.05;
+        camera.lookAt(scene.position);
+        
+        i = 0;
+        for (var ix = 0, lx = amtX; ix < lx; ix++) {
 
-initDeviceOrientation();
-animate();
+            for (var iy = 0, ly = amtY; iy < ly; iy++) {
+                particle = particles[i++];
+                particle.position.y = (Math.sin((ix + count) * 0.3) * 50) + (Math.sin((iy + count) * 0.5) * 50);
+                particle.scale.x = particle.scale.y = (Math.sin((ix + count) * 0.3) + 1) * 4 + (Math.sin((iy + count) * 0.5) + 1) * 4;
+                scene.add(particle);
+            }
+        }
 
-// Title Text
-const titleText = document.getElementById('holographic-text');
-titleText.innerText = "QUANTUM ENTANGLEMENT";
-gsap.fromTo(titleText, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, delay: 1.5 });
-// Banner Animation Css End
+        renderer.render(scene, camera);
+        count += 0.1;
+    }
+
+    document.addEventListener('DOMContentLoaded', onDocumentReady);
+    document.addEventListener('DOMContentLoaded', animate);
+
+})();
