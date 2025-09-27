@@ -16,7 +16,7 @@
 </head>
 
 <body>
- <canvas id="particles-bg">
+
     <!-- Progess Start  -->
 
     <div class="progress-container fixed-top">
@@ -47,8 +47,18 @@
         </div>
     </div>
 
-   
-    <div class="hero-banner">
+   <!-- Animation Banner Start  -->
+    <canvas id="particles-bg"></canvas>
+    <div class="banner">
+        <div class="content">
+            <div class="number" id="number">10</div>
+            <h1 class="heading">Years of Excellence</h1>
+            <p class="tagline">Thank you for being a part of this amazing journey.</p>
+        </div>
+        <canvas id="confetti"></canvas>
+    </div>
+    <!-- Animation Banner End  -->
+    <!-- <div class="hero-banner">
 
         <div class="container">
             <div class="row text-center">
@@ -64,19 +74,9 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Hero Banner End  -->
-<!-- Animation Banner Start  -->
-   
-    <div class="banner">
-        <div class="content">
-            <div class="number" id="number">10</div>
-            <h1 class="heading">Years of Excellence</h1>
-            <p class="tagline">Thank you for being a part of this amazing journey.</p>
-        </div>
-        <canvas id="confetti"></canvas>
-    </div>
-    <!-- Animation Banner End  -->
+
     <!-- About Start  -->
     <section class="about-me mt-5 mb-5">
         <div class="container" id="aboutme">
@@ -304,7 +304,7 @@
     </section>
 
 <!--     Footer End  -->
-    </canvas>
+  
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
