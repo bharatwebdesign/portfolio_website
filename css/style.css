@@ -33,9 +33,9 @@
             }
 
             .number {
-                        font-size: 140px;
+                        font-size: 7em;
                         font-weight: 900;
-                        background: linear-gradient(45deg, #ffcc70, #f04c91);
+                        background: orange;
                         -webkit-background-clip: text;
                         -webkit-text-fill-color: transparent;
                         animation: floatRotate 5s infinite ease-in-out;
