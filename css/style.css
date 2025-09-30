@@ -307,10 +307,8 @@ button:hover span:after {
  
   .embed-responsive.embed-responsive-16by9 {
     padding: 30px;
-    border-top: 3px solid orange;
-    border-left: 3px solid green;
-    border-right: 3px solid green;
-    border-bottom: 3px solid orange;
+    border:1px solid transparent;
+    border-image: linear-gradient(to right, red, yellow, green, blue) 1;
   }
 }
 /* Footer Code End  */
