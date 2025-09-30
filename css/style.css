@@ -357,6 +357,9 @@ button:hover span:after {
             .work-bg h1 {
                         font-size:24px;
             }
+            .hero-banner > .container {
+            padding:24px;
+            }
             
 }
 
