@@ -211,11 +211,8 @@ a.navbar-brand:hover {
   padding-bottom: 80px;
 }
 .hero-banner > .container {
-  border-left: 500px solid #f9b248;
-  border-right: 52px solid green;
-  border-top: 30px solid #f9b248;
-  border-bottom: 30px solid green;
-  background: #fff;
+  border:2px solid transparent;
+  border-image:linear-gradient(to right, red, yellow, green, blue) 1;
   -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
