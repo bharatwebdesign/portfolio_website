@@ -404,9 +404,7 @@ button:hover span:after {
     font-size: 19px;
     padding: 0;
   }
-  .hero-banner > .container {
-    border-left: 40px solid #f9b248;
-  }
+ 
   .about-me {
     margin-left: 10px;
     margin-right: 10px;
