@@ -419,3 +419,9 @@ button:hover span:after {
     margin-right: 10px;
   }
 }
+
+@media only screen and (max-width:364px) {
+            .work-bg h1 {
+            font-size:20px;
+            }
+}
