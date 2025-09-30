@@ -363,6 +363,12 @@ button:hover span:after {
             
 }
 
+@media only screen and (max-width:425px) {
+            .hero-banner h1 {
+                        font-size:27px;
+            }
+}
+
 /* Media Query Start  */
 @media (max-width: 414px) {
   .hero-banner {
