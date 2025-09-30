@@ -291,6 +291,12 @@ button:hover span:after {
   opacity: 1;
   right: 0;
 }
+
+.carousel-inner {
+  border:1px solid transparent;
+  border-image:linear-gradient(to right, red, yellow, green, blue) 1;
+}
+
 /* Responsive Section End  */
 
 /* Footer Code Start  */
