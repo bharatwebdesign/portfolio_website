@@ -347,10 +347,17 @@ button:hover span:after {
             }
 }
 
-@media only screen and (max-width:575px) {
+@media only screen and (max-width:576px) {
             .hero-banner, .work-bg{
                         margin:0px 10px;
             }
+            .hero-banner {
+                        margin-top:20px;
+            }
+            .work-bg h1 {
+                        font-size:24px;
+            }
+            
 }
 
 /* Media Query Start  */
