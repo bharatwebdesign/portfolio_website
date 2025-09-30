@@ -345,6 +345,9 @@ button:hover span:after {
             .express{
                         max-width:92%;
             }
+            .hero-banner > .container{
+                        margin:0px 10px;
+            }
 }
 
 
@@ -366,9 +369,7 @@ button:hover span:after {
    .about-me > .container {
     padding: 20px;
   }
-  .hero-banner > .container {
-    border-left: 40px solid #f9b248;
-  }
+
   .navbar-brand {
     padding: 0px;
   }
