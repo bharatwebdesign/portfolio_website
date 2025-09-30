@@ -199,8 +199,8 @@ a.navbar-brand:hover {
 }
 
 .progress-bar {
-  height: 8px;
-  background: #f9b248;
+  height:100%;
+  background-image: linear-gradient(to right, red, yellow, green,blue);
   width: 0%;
 }
 /* progress Code End  */
@@ -237,9 +237,10 @@ a.navbar-brand:hover {
   padding-bottom: 20px;
   text-shadow: 0 0 black;
 }
-.about-me > .container {
+.about-me > .container:not(:last-child) {
   border:1px solid transparent;
   border-image: linear-gradient(to right, red, yellow, green, blue) 1;
+  padding:20px;
 }
 
 p.bottom-line {
@@ -257,7 +258,8 @@ button {
   display: inline-block;
   background-color: transparent;
   border-radius: 10px;
-  border: 4px double #cccccc;
+  border: 2px double transparent;
+  border-image: linear-gradient(to right, red, yellow, green, blue) 1;
   color: #ffffff;
   text-align: center;
   font-size: 17px;
