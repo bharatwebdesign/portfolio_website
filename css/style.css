@@ -237,7 +237,7 @@ a.navbar-brand:hover {
   padding-bottom: 20px;
   text-shadow: 0 0 black;
 }
-.about-me > .container:not(:last-child) {
+.about-me > .container {
   border:1px solid transparent;
   border-image: linear-gradient(to right, red, yellow, green, blue) 1;
   padding:20px;
