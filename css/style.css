@@ -347,6 +347,11 @@ button:hover span:after {
             }
 }
 
+@media only screen and (max-width:575px) {
+            .hero-banner > .container{
+                        margin:0px 10px;
+            }
+}
 
 /* Media Query Start  */
 @media (max-width: 414px) {
