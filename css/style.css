@@ -348,7 +348,7 @@ button:hover span:after {
 }
 
 @media only screen and (max-width:575px) {
-            .hero-banner > .container{
+            .hero-banner, .work-bg{
                         margin:0px 10px;
             }
 }
