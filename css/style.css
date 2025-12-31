@@ -89,7 +89,7 @@
             }
         }
 
-        /* @keyframes zoomIn {
+        @keyframes zoomIn {
             from {
                 transform: scale(0.7) rotateX(15deg);
                 opacity: 0;
@@ -99,7 +99,7 @@
                 transform: scale(1) rotateX(0deg);
                 opacity: 1;
             }
-        } */
+        }
 
 /* Animation Effect End  */
 * {
