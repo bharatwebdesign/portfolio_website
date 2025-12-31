@@ -23,21 +23,22 @@
     height: auto;
 }
 
-    .zoom {
-        overflow:hidden;
-        transform: scale(1);
-        transition: transform .2s;
-        
-    }
 
-    .zoom:hover {
-        -ms-transform: scale(1.1);
-        /* IE 9 */
-        -webkit-transform: scale(1.1);
-        /* Safari 3-8 */
-        transform: scale(1.05);
+    /* updated code start  */
+.zoom-img {
+	overflow:hidden;
+}
+.zoom-img img {
+	transform: scale(1);
+	  transition: transform 0.5s ease;
+}
 
-    }
+.zoom-img:hover img {
+  transform: scale(1.03);
+}
+
+    /* updated code end  */
+  
 
     .work-bg .container {
        border:2px solid transparent;
@@ -329,6 +330,7 @@
 </body>
 
 </html>
+
 
 
 
