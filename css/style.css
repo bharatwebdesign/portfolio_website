@@ -218,6 +218,13 @@ a.navbar-brand:hover {
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
   padding: 50px;
 }
+.work-bg h3 {
+  border:2px solid transparent;
+  border-image:linear-gradient(to right, red, yellow, green, blue) 1;
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+}
 .hero-banner h1 {
   font-size: 3em;
   font-weight: 700;
